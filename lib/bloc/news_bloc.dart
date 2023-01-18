@@ -15,6 +15,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
   Future<void> _getNewsByCountry(
       NewsByCountryCodeEvent event, Emitter<NewsState> emit) async {
+    if (state is! NewsLoading) emit(NewsLoading());
     final news = await service.getNewsByCountry(event.countryCode);
     if (news != null) {
       emit(NewsSuccess(news));

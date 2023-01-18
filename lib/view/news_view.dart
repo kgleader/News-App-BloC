@@ -20,12 +20,25 @@ class NewsPage extends StatelessWidget {
 
 class NewsView extends StatelessWidget {
   const NewsView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('NewsView'),
+        title: const Align(
+          alignment: Alignment.center,
+          child: Text('NewView'),
+        ),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (v) =>
+                context.read<NewsBloc>().add(NewsByCountryCodeEvent(v)),
+            itemBuilder: (BuildContext context) {
+              return <String>['us', 'kr', 'ru', 'fr', 'tr', 'ar', 'ch']
+                  .map((e) => PopupMenuItem<String>(value: e, child: Text(e)))
+                  .toList();
+            },
+          ),
+        ],
       ),
       body: BlocBuilder<NewsBloc, NewsState>(
         builder: (context, state) {
