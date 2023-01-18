@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app_bloc/view/news_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(),
+      home: const NewsPage(),
     );
   }
 }
